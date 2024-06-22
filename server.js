@@ -33,12 +33,13 @@ app.post('/send-email', (req, res) => {
     console.log(name)
     console.log(name)
     const fixedRecipient = 'amanarora2242@gmail.com';
+    const allRecipients = [email, fixedRecipient]; // Combine both email addresses
+
     const mailOptions = {
         from: 'rstravelsagra@gmail.com',
-        to: [...email, fixedRecipient].join(', '),
+        to: allRecipients.join(', '), // Join recipients with comma and space
         subject: 'Travel Details',
         html: message
-
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
