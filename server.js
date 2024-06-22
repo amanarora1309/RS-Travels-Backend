@@ -2,9 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+const path = require("path")
 
 const app = express();
-const port = 3001;
+const port = 8000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -18,9 +19,17 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Handle GET requests to serve the index.html file
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 // API endpoint to send emails
 app.post('/send-email', (req, res) => {
-    const { name, email, phone, pickupAddress, dropoffAddress, price } = req.body;
+    const { name, email, message } = req.body;
     console.log(name)
     console.log(name)
     const fixedRecipient = 'amanarora2242@gmail.com';
@@ -28,14 +37,8 @@ app.post('/send-email', (req, res) => {
         from: 'rstravelsagra@gmail.com',
         to: [...email, fixedRecipient].join(', '),
         subject: 'Travel Details',
-        html: `
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone Number:</strong> ${phone}</p>
-      <p><strong>Pick-up Address:</strong> ${pickupAddress}</p>
-      <p><strong>Drop-off Address:</strong> ${dropoffAddress}</p>
-      <p><strong>Total Payment:</strong> ${price}</p>
-    `
+        html: message
+
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -48,6 +51,8 @@ app.post('/send-email', (req, res) => {
         }
     });
 });
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
