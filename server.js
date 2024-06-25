@@ -32,7 +32,7 @@ app.post('/send-email', (req, res) => {
     const { name, email, message } = req.body;
     console.log(name)
     console.log(name)
-    const fixedRecipient = 'amanarora2242@gmail.com';
+    const fixedRecipient = 'info.rstravellsagra@gmail.com';
     const allRecipients = [email, fixedRecipient]; // Combine both email addresses
 
     const mailOptions = {
