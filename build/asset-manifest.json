@@ -69,8 +69,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/static/media/roboto-greek-ext-700-normal.249853776d22a271b2b5.woff",
     "index.html": "/index.html",
     "main.eab48e10.css.map": "/static/css/main.eab48e10.css.map",
-    "main.27bec8cf.js.map": "/static/js/main.27bec8cf.js.map",
+    "main.1c07e5f8.js.map": "/static/js/main.1c07e5f8.js.map",
     "453.a3fdcf23.chunk.js.map": "/static/js/453.a3fdcf23.chunk.js.map"
   },
-  "entrypoints": ["static/css/main.eab48e10.css", "static/js/main.1c07e5f8.js"]
+  "entrypoints": [
+    "static/css/main.eab48e10.css",
+    "static/js/main.1c07e5f8.js"
+  ]
 }

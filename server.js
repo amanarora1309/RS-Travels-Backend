@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require("path")
 
 const app = express();
-const port = 80;
+const port = 8000;
 
 app.use(bodyParser.json());
 app.use(cors());
