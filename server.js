@@ -3,12 +3,21 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require("path")
+const https = require('https');
+const fs = require('fs');
 
 const app = express();
 const port = 80;
 
 app.use(bodyParser.json());
 app.use(cors());
+
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/chain.pem')
+};
+
 
 // SMTP transporter configuration
 const transporter = nodemailer.createTransport({
@@ -55,6 +64,6 @@ app.post('/send-email', (req, res) => {
 
 
 
-app.listen(port, () => {
+https.createServer(options, app).listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
