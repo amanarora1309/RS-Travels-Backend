@@ -7,15 +7,15 @@ const https = require('https');
 const fs = require('fs');
 
 const app = express();
-const port = 8000;
+const port = 443;
 
 app.use(bodyParser.json());
 app.use(cors());
 
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/cert.pem'),
-    ca: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/chain.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/rstravel.in/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/rstravel.in/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/rstravel.in/chain.pem')
 };
 
 
